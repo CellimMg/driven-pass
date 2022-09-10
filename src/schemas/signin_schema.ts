@@ -2,9 +2,9 @@ import joi from "joi";
 import { UserInsert } from "../types/User";
 
 
-const userSchema = joi.object<UserInsert>({
+const signinSchema = joi.object<UserInsert>({
     email: joi.string().email().required(),
-    password: joi.string().min(10).required()
+    password: joi.string().required()
 })
 
-export default userSchema;
+export default signinSchema;
