@@ -4,7 +4,7 @@ import { UserInsert } from "../types/User";
 
 const signinSchema = joi.object<UserInsert>({
     email: joi.string().email().required(),
-    password: joi.string().required()
+    password: joi.string().required() //Por questões de segurança, não informa a quantidade de caracteres
 })
 
 export default signinSchema;
