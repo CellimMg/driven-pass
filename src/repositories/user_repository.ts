@@ -3,8 +3,6 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { CustomError } from "../types/Error";
 import { UserInsert } from "../types/User";
 
-
-
 const prisma = new PrismaClient();
 
 export async function createUser(user: UserInsert){
