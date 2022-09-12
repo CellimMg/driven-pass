@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.17.x",
+    "npm": "8.15.x"
+  },
   "scripts": {
-    "test": "karma start",
-    "dev": "npx ts-node src/index.ts",
-    "build": "webpack -p"
+    
+    "dev": "npx ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",

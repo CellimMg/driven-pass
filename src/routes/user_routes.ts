@@ -8,7 +8,7 @@ const userRoutes = Router();
 
 
 userRoutes.post("/signup", schemaValidate(signupSchema), createUser);
-userRoutes.post("/signin", schemaValidate(signinSchema), signinUser);
+userRoutes.post("/signin", schemaValidate(signinSchema), signinUser); 
 
 
 export default userRoutes;

@@ -36,5 +36,5 @@ model Nota {
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
 
-  @@map("notas")
+  @@map("notas") 
 }
