@@ -11,9 +11,9 @@ export async function createCredencial(credencial: CredencialInsert) {
         throw CustomError.UNEXPECTED;
     }
 }
-export async function readCredencialAll() {
+export async function readCredencialAll(userId: number) {
     try {
-        const credenciais = await prisma.credencial.findMany();
+        const credenciais = await prisma.credencial.findMany({where: {userId: userId}});
         return credenciais;
     } catch (error) {
         throw CustomError.UNEXPECTED;
@@ -39,6 +39,16 @@ export async function readCredencialByUserId(userId: number) {
 export async function readCredencialByUserIdAndTitulo(userId: number, titulo: string) {
     try {
         const credencial = await prisma.credencial.findFirst({ where: { userId: userId, titulo: titulo } });
+
+        return credencial;
+    } catch (error) {
+        throw CustomError.UNEXPECTED;
+    }
+}
+
+export async function readCredencialById(id: number) {
+    try {
+        const credencial = await prisma.credencial.findFirst({ where: { id: id } });
 
         return credencial;
     } catch (error) {

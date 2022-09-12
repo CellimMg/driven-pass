@@ -20,3 +20,34 @@ export async function createCredencial(credencial: CredencialInsert) {
         throw error;
     }
 }
+
+export async function readCredencial(userId: number) {
+    try {
+        const credencials = await credencialRepository.readCredencialAll(userId);
+
+        for(let credencial of credencials){
+            credencial.password = cryptrI.decrypt(credencial.password);
+        }
+        
+        return credencials;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function readCredencialById(id: number, userId: number) {
+    try {
+        const credencial = await credencialRepository.readCredencialById(id);
+
+        if(!credencial) throw CustomError.NOT_FOUND;
+        if(credencial?.userId != userId) throw CustomError.NOT_ALLOWED;
+
+        credencial.password = cryptrI.decrypt(credencial.password);
+
+        return credencial;    
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}

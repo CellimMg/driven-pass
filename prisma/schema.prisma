@@ -18,7 +18,7 @@ model User {
 
 model Credencial {
   id       Int    @id @default(autoincrement())
-  email    String @unique
+  email    String 
   password String
   titulo   String
   url String
