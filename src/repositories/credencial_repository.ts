@@ -55,3 +55,11 @@ export async function readCredencialById(id: number) {
         throw CustomError.UNEXPECTED;
     }
 }
+
+export async function deleteCredencialById(id: number) {
+    try {
+        await prisma.credencial.delete({ where: { id: id } });
+    } catch (error) {
+        throw CustomError.UNEXPECTED;
+    }
+}

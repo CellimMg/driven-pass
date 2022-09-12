@@ -28,7 +28,7 @@ export async function readCredencial(req: Request, res: Response) {
     } catch (error) {
         switch (error) {
             case CustomError.NOT_FOUND:
-                return res.status(400).send({ message: "Sem credenciais salvas!" });
+                return res.status(404).send({ message: "Sem credenciais salvas!" });
             default:
                 break;
         }
@@ -48,7 +48,27 @@ export async function readCredencialById(req: Request, res: Response) {
             case CustomError.NOT_FOUND:
                 return res.status(404).send({ message: "Esta credencial não existe!" });
             case CustomError.NOT_ALLOWED:
-                return res.status(400).send({ message: "Esta credencial não pertence a você!" });
+                return res.status(401).send({ message: "Esta credencial não pertence a você!" });
+            default:
+                break;
+        }
+        return res.sendStatus(500);
+    }
+}
+
+export async function deleteCredencialById(req: Request, res: Response){
+    try {
+        const credencialId = req.params.id;
+        const userId = res.locals.userId;
+        await credencialService.deleteCredencialById(parseInt(credencialId), userId);
+
+        return res.sendStatus(200);
+    } catch (error) {
+        switch (error) {
+            case CustomError.NOT_FOUND:
+                return res.status(404).send({ message: "Esta credencial não existe!" });
+            case CustomError.NOT_ALLOWED:
+                return res.status(401).send({ message: "Esta credencial não pertence a você!" });
             default:
                 break;
         }

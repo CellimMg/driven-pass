@@ -51,3 +51,17 @@ export async function readCredencialById(id: number, userId: number) {
         throw error;
     }
 }
+
+export async function deleteCredencialById(id: number, userId: number) {
+    try {
+        const credencial = await credencialRepository.readCredencialById(id);
+
+        if(!credencial) throw CustomError.NOT_FOUND;
+        if(credencial?.userId != userId) throw CustomError.NOT_ALLOWED;
+
+        await credencialRepository.deleteCredencialById(id);
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
