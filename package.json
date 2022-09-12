@@ -8,6 +8,7 @@
     "npm": "8.15.x"
   },
   "scripts": {
+    "start": "npx ts-node src/index.ts",
     "dev": "npx ts-node src/index.ts"
   },
   "keywords": [],
