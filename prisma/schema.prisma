@@ -14,6 +14,7 @@ model User {
   credenciais Credencial[]
   notas       Nota[]
   cartoes     Cartao[]
+  wifis       Wifi[]
 
   @@map("users")
 }
@@ -53,4 +54,15 @@ model Cartao {
   user    User    @relation(fields: [userId], references: [id])
 
   @@map("cartoes")
+}
+
+model Wifi {
+  id     Int    @id @default(autoincrement())
+  titulo String
+  nome   String
+  senha  String
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("wifis")
 }
