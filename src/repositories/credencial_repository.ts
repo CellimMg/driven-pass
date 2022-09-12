@@ -11,6 +11,7 @@ export async function createCredencial(credencial: CredencialInsert) {
         throw CustomError.UNEXPECTED;
     }
 }
+
 export async function readCredencialAll(userId: number) {
     try {
         const credenciais = await prisma.credencial.findMany({where: {userId: userId}});
@@ -19,6 +20,7 @@ export async function readCredencialAll(userId: number) {
         throw CustomError.UNEXPECTED;
     }
 }
+
 export async function readCredencialByUserId(userId: number) {
     try {
         const credencial = await prisma.credencial.findFirst({ where: { userId: userId } });

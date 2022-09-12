@@ -12,18 +12,29 @@ model User {
   email       String       @unique
   password    String
   credenciais Credencial[]
+  notas       Nota[]
 
   @@map("users")
 }
 
 model Credencial {
   id       Int    @id @default(autoincrement())
-  email    String 
+  email    String
   password String
   titulo   String
-  url String
+  url      String
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
 
   @@map("credenciais")
+}
+
+model Nota {
+  id       Int    @id @default(autoincrement())
+  titulo   String
+  anotacao String
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@map("notas")
 }
