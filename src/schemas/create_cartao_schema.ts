@@ -1,9 +1,9 @@
 import joi from "joi";
 import { CartaoInsert } from "../types/Cartao";
 
-const patternCVC = "/^[0-9+]{3}$/"
-const patternNumero = "/^[0-9+]{16}$/"
-const patternSenha = "/^[0-9+]{4}$/"
+const patternCVC = "^[0-9]{3}$"
+const patternNumero = "^[0-9]{16}$"
+const patternSenha = "^[0-9]{4}$"
 
 const createCartaoSchema = joi.object<CartaoInsert>({
     nome: joi.string().min(1).required(),
